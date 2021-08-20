@@ -1,35 +1,16 @@
-import React, { useEffect } from "react";
-import logo from "./logo512.png";
+import React from "react";
 import "./App.css";
 
-import { Widget, addResponseMessage } from "react-chat-widget";
-import "react-chat-widget/lib/styles.css";
+import "react-chat-elements/dist/main.css";
+import { ChatItem } from "react-chat-elements";
+import { MessageBox } from "react-chat-elements";
+import { ChatList } from "react-chat-elements";
+import { MessageList } from "react-chat-elements";
 
 function App() {
-  useEffect(() => {
-    for (let i = 0; i < 5; i++) {
-      addResponseMessage("test 1");
-    }
-  }, []);
-
-  const handleNewUserMessage = (newMessage) => {
-    console.log(`New message incoming! ${newMessage}`);
-    console.log(newMessage);
-    // Now send the message throught the backend API
-  };
-
   return (
     <div className="App">
-      <Widget
-        title="Chat app"
-        subtitle="Chat with your buddies"
-        profileAvatar={logo}
-        handleNewUserMessage={handleNewUserMessage}
-        resizable={true}
-        fullScreenMode={false}
-        emojis={true}
-        showTimeStamp={false}
-      />
+      <div className="main-container"></div>
     </div>
   );
 }

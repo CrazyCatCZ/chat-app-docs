@@ -1,17 +1,13 @@
 .App {
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
-.rcw-client .rcw-message-text {
-  background-color: #0084ff !important;
-  color: white;
+.main-container {
+  width: 50% !important;
 }
 
-.rcw-title {
-  font: 30px Arial, sans-serif;
-  font-weight: 800;
-}
-
-.rcw-header span {
-  font: 16px Arial, sans-serif;
+.rce-mbox-text.right,
+.rce-mbox-text.left {
+  font: 15px Arial, sans-serif;
 }

@@ -1,13 +1,14 @@
-.App {
-  display: flex;
-  justify-content: center;
-}
-
 .main-container {
-  width: 50% !important;
+  max-width: 200% !important;
 }
 
-.rce-mbox-text.right,
-.rce-mbox-text.left {
-  font: 15px Arial, sans-serif;
+.user-chat-container {
+  display: flex !important;
+  justify-content: right !important;
+  flex-direction: column;
+}
+
+.icons {
+  cursor: pointer;
+  color: #00b2ff;
 }

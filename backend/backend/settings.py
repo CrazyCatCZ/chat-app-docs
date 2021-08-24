@@ -19,6 +19,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Django apps
+    'chat',
+
     # Pip packages
     'channels',
 ]

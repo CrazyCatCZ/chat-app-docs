@@ -11,6 +11,7 @@ channels-redis = "*"
 djangochannelsrestframework = "*"
 djangorestframework = "*"
 django-rename-app = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 

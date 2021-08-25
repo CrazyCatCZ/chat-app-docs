@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     # Pip packages
     'channels',
     'rest_framework',
-    'django_rename_app',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -36,6 +36,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    "corsheaders.middleware.CorsMiddleware", # Corsheaders
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1",
+    "http://localhost:3000",
 ]
 
 ROOT_URLCONF = 'backend.urls'

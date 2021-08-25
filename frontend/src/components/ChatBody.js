@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { axiosInstance } from "./axios";
+import axios from "axios";
 
 const localHost = "127.0.0.1:8000";
 const ws = new WebSocket("ws://" + localHost + "/ws/chat/public_chat/");
 
 const ChatBody = ({ messageInput }) => {
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    const fetch = async () => {
+      const objects = await axios.get(
+        "http://127.0.0.1:8000/chat/public-chatroom/19/"
+      );
+      console.log(objects);
+    };
+    fetch();
+  }, []);
+
   ws.onmessage = (e) => {
     const text = JSON.parse(e.data)["message"];
     const div = document.createElement("div");

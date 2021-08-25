@@ -9,7 +9,9 @@ const ws = new WebSocket("ws://" + localHost + "/ws/chat/public_chat/");
 const ChatBottom = ({ messageInput, setMessageInput }) => {
   const message = {
     action: "subscribe_instance",
-    message: messageInput,
+    user: "admin",
+    text: messageInput,
+    room_name: "Official Public Chat",
     //pk: 42,
     //request_id: 4,
   };

@@ -14,4 +14,7 @@ class Message(models.Model):
 
 class PublicChatRoom(models.Model):
     name = models.CharField(max_length=100)
-    messages = models.ForeignKey(Message, on_delete=models.CASCADE)
+    messages = models.ManyToManyField(Message, blank=True)
+
+    def __str__(self):
+        return self.name

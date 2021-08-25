@@ -5,7 +5,8 @@ from . import views
 from .views import MessageViewSet, PublicChatRoomViewSet
 
 router = DefaultRouter()
-router.register('', MessageViewSet)
+router.register('messages', MessageViewSet)
+router.register('public-chatroom', PublicChatRoomViewSet)
 
 '''
 urlpatterns = [

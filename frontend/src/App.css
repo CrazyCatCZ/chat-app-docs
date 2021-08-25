@@ -1,5 +1,6 @@
 .main-container {
   max-width: 200% !important;
+  max-height: 100% !important;
 }
 
 .user-chat-container {
@@ -11,4 +12,12 @@
 .icons {
   cursor: pointer;
   color: #00b2ff;
+}
+
+.card-header {
+  margin-bottom: 1rem;
+}
+
+.publisher {
+  margin-top: 1rem;
 }

@@ -97,7 +97,7 @@ h4.card-title {
 }
 
 .media {
-  padding: 16px 12px;
+  padding: 0px 12px;
   -webkit-transition: background-color 0.2s linear;
   transition: background-color 0.2s linear;
 }
@@ -160,12 +160,6 @@ h4.card-title {
   font-weight: 400;
 }
 
-.media {
-  padding: 16px 12px;
-  -webkit-transition: background-color 0.2s linear;
-  transition: background-color 0.2s linear;
-}
-
 .media-meta-day::before {
   margin-right: 16px;
 }
@@ -200,12 +194,6 @@ h4.card-title {
 .media-chat {
   padding-right: 64px;
   margin-bottom: 0;
-}
-
-.media {
-  padding: 16px 12px;
-  -webkit-transition: background-color 0.2s linear;
-  transition: background-color 0.2s linear;
 }
 
 .media-chat.media-chat-reverse .media-body p {

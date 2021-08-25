@@ -26,6 +26,12 @@ const ChatBody = ({ messageInput }) => {
           <p>We will go on sunday? </p>
         </div>
       </div>
+      <div className="media media-chat">
+        <div className="media-body">
+          <p>Okay</p>
+          <p>We will go on sunday? </p>
+        </div>
+      </div>
       <div className="user-chat-container media media-chat media-chat-reverse">
         <div className="media-body">
           <p>That's awesome!</p>

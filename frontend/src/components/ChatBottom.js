@@ -14,10 +14,6 @@ const ChatBottom = ({ messageInput, setMessageInput }) => {
     //request_id: 4,
   };
 
-  ws.onmessage = (e) => {
-    console.log(JSON.parse(e.data));
-  };
-
   const sendMessage = () => {
     if (messageInput !== "") {
       setMessageInput("");

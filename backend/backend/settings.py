@@ -20,11 +20,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     # Django apps
-    'chat',
+    'public_chat',
 
     # Pip packages
     'channels',
     'rest_framework',
+    'django_rename_app',
 ]
 
 MIDDLEWARE = [

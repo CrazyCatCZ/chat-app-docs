@@ -56,13 +56,13 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'backend.wsgi.application'
-ASGI_APPLICATION = "backend.asgi.application"
+ASGI_APPLICATION = 'backend.asgi.application'
 
 CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379), 'redis://localhost:6379/4'],
+            "hosts": [('127.0.0.1', 6379), 'redis://localhost:6379/4', 'localhost:3000', 'redis//localhost:3000'],
         },
     },
 }

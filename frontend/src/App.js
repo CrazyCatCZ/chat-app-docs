@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Bootstrap.css";
 import "./App.css";
 
@@ -7,6 +7,10 @@ import ChatBody from "./components/ChatBody";
 import ChatBottom from "./components/ChatBottom";
 
 function App() {
+  useEffect(() => {
+    console.log(window.location.host);
+  }, []);
+
   return (
     <div className="App">
       <div className=" page-content page-container" id="page-content">

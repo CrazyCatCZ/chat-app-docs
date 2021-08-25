@@ -21,7 +21,7 @@ function App() {
       ws.send(JSON.stringify(message));
     };
     ws.onmessage = (e) => {
-      console.log(e.data);
+      console.log(JSON.parse(e.data));
     };
   }, []);
 

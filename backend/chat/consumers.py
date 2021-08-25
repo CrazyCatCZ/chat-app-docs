@@ -1,15 +1,5 @@
 import json
 from channels.generic.websocket import AsyncWebsocketConsumer
-from djangochannelsrestframework.generics import GenericAsyncAPIConsumer
-from djangochannelsrestframework.observer.generics import ObserverModelInstanceMixin
-
-from .models import Message
-from .serializers import MessageSerializer
-
-
-class DRFConsumer(ObserverModelInstanceMixin, GenericAsyncAPIConsumer):
-    queryset = Message.objects.all()
-    serializer_class = MessageSerializer
 
 
 class ChatConsumer(AsyncWebsocketConsumer):

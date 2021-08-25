@@ -1,6 +1,4 @@
 import os
-from django.urls import path
-from chat.consumers import DRFConsumer
 
 from channels.auth import AuthMiddlewareStack
 from channels.routing import ProtocolTypeRouter, URLRouter

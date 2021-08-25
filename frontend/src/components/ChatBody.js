@@ -1,6 +1,8 @@
 import React from "react";
 
-const ChatBody = () => {
+const ChatBody = ({ messageInput }) => {
+  console.log(messageInput);
+
   return (
     <div
       className="ps-container ps-theme-default ps-active-y"
@@ -35,7 +37,7 @@ const ChatBody = () => {
       >
         <div
           className="ps-scrollbar-x"
-          tabindex="0"
+          tabIndex="0"
           style={{ left: "0px", width: "0px" }}
         ></div>
       </div>
@@ -45,7 +47,7 @@ const ChatBody = () => {
       >
         <div
           className="ps-scrollbar-y"
-          tabindex="0"
+          tabIndex="0"
           style={{ top: "0px", height: "2px" }}
         ></div>
       </div>

@@ -8,6 +8,8 @@ django = "*"
 python-dotenv = "*"
 channels = "==3.0.4"
 channels-redis = "*"
+djangochannelsrestframework = "*"
+djangorestframework = "*"
 
 [dev-packages]
 

@@ -10,3 +10,8 @@ class Message(models.Model):
 
     def __str__(self):
         return f'{self.user} - {self.text}'
+
+
+class PublicChatRoom(models.Model):
+    name = models.CharField(max_length=100)
+    messages = models.ForeignKey(Message, on_delete=models.CASCADE)

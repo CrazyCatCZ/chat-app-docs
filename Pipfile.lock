@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "1b816298c9cbd307a180e8aa0f82aab3471ff5fd08dc880c52845edc4837322f"
+            "sha256": "cfcffad1aa0a4ffeaa32267642747ec8c7f4f52af9949108dfe818a84e0d71b4"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -173,6 +173,14 @@
             ],
             "index": "pypi",
             "version": "==3.2.6"
+        },
+        "django-rename-app": {
+            "hashes": [
+                "sha256:195d2fa09eec8ed57577f7bf57a3c6944bdb6447fe47c07be0e575fb2e325742",
+                "sha256:bba31d33de4614124e2cd2f22fcea07b2affbbb2cf877a26893e0c15465fbfab"
+            ],
+            "index": "pypi",
+            "version": "==0.1.3"
         },
         "djangochannelsrestframework": {
             "hashes": [

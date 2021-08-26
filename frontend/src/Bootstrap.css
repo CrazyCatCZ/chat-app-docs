@@ -97,7 +97,7 @@ h4.card-title {
 }
 
 .media {
-  padding: 0px 12px;
+  margin-top: -4px;
   -webkit-transition: background-color 0.2s linear;
   transition: background-color 0.2s linear;
 }

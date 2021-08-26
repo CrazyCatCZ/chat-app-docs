@@ -12,11 +12,11 @@ const ChatBottom = ({ messageInput, setMessageInput }) => {
     user: "admin",
     text: messageInput,
     room_name: "Official Public Chat",
-    //pk: 42,
-    //request_id: 4,
   };
 
-  const sendMessage = () => {
+  const sendMessage = (e) => {
+    e.preventDefault();
+
     if (messageInput !== "") {
       setMessageInput("");
       ws.send(JSON.stringify(message));
@@ -24,21 +24,23 @@ const ChatBottom = ({ messageInput, setMessageInput }) => {
   };
 
   return (
-    <div className="publisher bt-1 border-light">
-      <input
-        onChange={(e) => setMessageInput(e.target.value)}
-        value={messageInput}
-        className="publisher-input"
-        placeholder="Write something..."
-      />{" "}
-      <FontAwesomeIcon className="icons" size="lg" icon={faSmile} />
-      <FontAwesomeIcon
-        onClick={sendMessage}
-        className="icons"
-        size="lg"
-        icon={faPaperPlane}
-      />
-    </div>
+    <form onSubmit={sendMessage}>
+      <div className="publisher bt-1 border-light">
+        <input
+          onChange={(e) => setMessageInput(e.target.value)}
+          value={messageInput}
+          className="publisher-input"
+          placeholder="Write something..."
+        />{" "}
+        <FontAwesomeIcon className="icons" size="lg" icon={faSmile} />
+        <FontAwesomeIcon
+          type="submit"
+          className="icons"
+          size="lg"
+          icon={faPaperPlane}
+        />
+      </div>
+    </form>
   );
 };
 

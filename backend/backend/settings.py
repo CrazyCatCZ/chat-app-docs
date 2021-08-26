@@ -139,6 +139,10 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
 '''
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,

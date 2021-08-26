@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-import { makeStyles, useTheme } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
@@ -13,13 +14,20 @@ const useStyles = makeStyles((theme) => ({
   menuButton: {
     marginRight: theme.spacing(2),
   },
+  link: {
+    color: "inherit",
+    textDecoration: "inherit",
+    "&:hover": {
+      color: "#fff",
+    },
+  },
   title: {
+    cursor: "pointer",
     flexGrow: 1,
   },
 }));
 
 const Navbar = () => {
-  const theme = useTheme();
   const classes = useStyles();
 
   return (
@@ -27,11 +35,25 @@ const Navbar = () => {
       <AppBar position="static" style={{ color: "white" }}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Chat
+            <Link className={classes.link} to="/">
+              Chat
+            </Link>
           </Typography>
-          <Button color="inherit">Logout</Button>
-          <Button color="inherit">Login</Button>
-          <Button color="inherit">Register</Button>
+          <Button color="inherit">
+            <Link className={classes.link} to="/login">
+              Logout
+            </Link>
+          </Button>
+          <Button color="inherit">
+            <Link className={classes.link} to="/login">
+              Login
+            </Link>
+          </Button>
+          <Button color="inherit">
+            <Link className={classes.link} to="/register">
+              Register
+            </Link>
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

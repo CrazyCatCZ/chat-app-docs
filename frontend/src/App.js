@@ -1,14 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import "./Bootstrap.css";
 import "./App.css";
+import { Switch, Route } from "react-router-dom";
 
-import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 
+import Login from "./components/Authentication/Login";
+import Register from "./components/Authentication/Register";
 import Navbar from "./components/Navbar";
-import ChatHeader from "./components/ChatHeader";
-import ChatBody from "./components/ChatBody";
-import ChatBottom from "./components/ChatBottom";
+import Chat from "./components/Chat/Chat";
 
 function App() {
   const theme = createTheme({
@@ -18,28 +18,16 @@ function App() {
       },
     },
   });
-  const [messageInput, setMessageInput] = useState("");
 
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <Navbar />
-        <div className=" page-content page-container" id="page-content">
-          <div className="padding">
-            <div className="main-container row container d-flex justify-content-center">
-              <div className="col-md-6">
-                <div className="card card-bordered">
-                  <ChatHeader />
-                  <ChatBody messageInput={messageInput} />
-                  <ChatBottom
-                    messageInput={messageInput}
-                    setMessageInput={setMessageInput}
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Switch>
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+          <Route path="/" component={Chat} />
+        </Switch>
       </ThemeProvider>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Message from "./Message";
-import { axiosInstance } from "./axios";
+import { axiosInstance } from "../axios";
 
 const localHost = "127.0.0.1:8000";
 const ws = new WebSocket("ws://" + localHost + "/ws/chat/public_chat/");

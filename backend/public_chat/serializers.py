@@ -3,18 +3,15 @@ from .models import Message, PublicChatRoom
 
 
 class MessageSerializer(serializers.ModelSerializer):
+    username = serializers.CharField(source='user')
+
     class Meta:
         model = Message
-        fields = '__all__'
+        fields = ['id', 'username', 'text', 'date']
 
-
-class NestedMessageSerializer(serializers.ModelSerializer):
-     class Meta:
-        model = Message
-        fields = '__all__'
 
 class PublicChatRoomSerializer(serializers.ModelSerializer):
-    messages = NestedMessageSerializer(many=True)
+    messages = MessageSerializer(many=True)
 
     class Meta:
         model = PublicChatRoom

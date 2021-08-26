@@ -14,7 +14,7 @@ function App() {
   const theme = createTheme({
     palette: {
       primary: {
-        main: "#1976D2",
+        main: "#00b2ff",
       },
     },
   });
@@ -23,7 +23,6 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <CssBaseline />
         <Navbar />
         <div className=" page-content page-container" id="page-content">
           <div className="padding">

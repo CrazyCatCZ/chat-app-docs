@@ -24,7 +24,7 @@ const ChatBottom = ({ messageInput, setMessageInput }) => {
   };
 
   return (
-    <form onSubmit={sendMessage}>
+    <form onClick={sendMessage} onSubmit={sendMessage}>
       <div className="publisher bt-1 border-light">
         <input
           onChange={(e) => setMessageInput(e.target.value)}

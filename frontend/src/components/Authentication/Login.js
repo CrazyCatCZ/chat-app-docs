@@ -73,11 +73,9 @@ const SignIn = () => {
           console.log("Unable to log in with provided credentials.");
         } else if (res.status === 401) {
           console.log("Wrong credentials");
-          console.log(res);
         }
       })
       .then((res) => {
-        console.log(res.request);
         if (res && res.status === 200) {
           const {
             data: { token },

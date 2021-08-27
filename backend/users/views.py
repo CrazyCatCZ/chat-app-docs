@@ -4,6 +4,7 @@ from django.dispatch import receiver
 
 from rest_framework import permissions
 from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from rest_framework.authtoken.models import Token
 from rest_framework.authtoken.views import ObtainAuthToken
 
@@ -16,6 +17,13 @@ from rest_framework_simplejwt.exceptions import InvalidToken
 def create_auth_token(sender, instance=None, created=False, **kwargs):
     if created:
         Token.objects.create(user=instance)
+
+@api_view(['GET'])
+def current_user(request):
+    user = request.user
+    return Response({
+      'username' : user.username,
+    })
 
 class CookieTokenRefreshSerializer(TokenRefreshSerializer):
     refresh = None

@@ -23,6 +23,7 @@ export const axiosInstance = axios.create({
   headers: config,
 });
 
+/*
 axiosInstance.interceptors.response.use(
   (response) => {
     return response;
@@ -34,3 +35,4 @@ axiosInstance.interceptors.response.use(
     return error;
   }
 );
+*/

@@ -58,6 +58,7 @@ const SignIn = () => {
 
   const login = (e) => {
     e.preventDefault();
+    setFailedToLogin(false);
 
     axiosInstance
       .post("users/token-auth/", {
@@ -66,7 +67,7 @@ const SignIn = () => {
       })
       .catch((err) => {
         const res = err.response;
-        console.log(res);
+        setFailedToLogin(true);
 
         if (res.status === 400) {
           console.log("Unable to log in with provided credentials.");
@@ -76,14 +77,17 @@ const SignIn = () => {
         }
       })
       .then((res) => {
-        if (res) {
+        console.log(res.request);
+        if (res && res.status === 200) {
           const {
             data: { token },
           } = res;
 
           localStorage.setItem("token", token);
           axiosInstance.defaults.headers["Authorization"] = "Token " + token;
-          //history.push('/');
+          history.push("/");
+        } else {
+          setFailedToLogin(true);
         }
       });
   };

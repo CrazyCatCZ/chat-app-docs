@@ -24,9 +24,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <Navbar />
         <Switch>
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/" component={Chat} />
+          <Route path="/login" component={Login} exact />
+          <Route path="/register" component={Register} exact />
+          <Route path="/" component={Chat} exact />
         </Switch>
       </ThemeProvider>
     </div>

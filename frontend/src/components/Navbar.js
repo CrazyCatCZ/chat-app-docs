@@ -29,13 +29,14 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const classes = useStyles();
+  const homeLink = localStorage.getItem("token") ? "/" : "/login";
 
   return (
     <div className={`${classes.root} main-navbar`}>
       <AppBar position="static" style={{ color: "white" }}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <Link className={classes.link} to="/">
+            <Link className={classes.link} to={homeLink}>
               Chat
             </Link>
           </Typography>

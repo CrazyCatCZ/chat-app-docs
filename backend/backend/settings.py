@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'channels',
     'rest_framework',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'dj_rest_auth',
     'allauth',
     'allauth.account',
@@ -142,9 +143,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+REST_USE_JWT = True
+JWT_AUTH_COOKIE = 'accessToken'
+JWT_AUTH_REFRESH_COOKIE = 'refreshToken'
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
+        #'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
+
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',

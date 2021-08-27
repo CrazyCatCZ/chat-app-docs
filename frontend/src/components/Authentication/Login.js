@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
+
+import { axiosInstance } from "../axios";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
@@ -54,78 +56,112 @@ const SignIn = () => {
 
   const [failedToLogin, setFailedToLogin] = useState(false);
 
+  const login = (e) => {
+    e.preventDefault();
+
+    axiosInstance
+      .post("users/token-auth/", {
+        username,
+        password,
+      })
+      .catch((err) => {
+        const res = err.response;
+        console.log(res);
+
+        if (res.status === 400) {
+          console.log("Unable to log in with provided credentials.");
+        } else if (res.status === 401) {
+          console.log("Wrong credentials");
+          console.log(res);
+        }
+      })
+      .then((res) => {
+        if (res) {
+          const {
+            data: { token },
+          } = res;
+
+          localStorage.setItem("token", token);
+          axiosInstance.defaults.headers["Authorization"] = "Token " + token;
+          //history.push('/');
+        }
+      });
+  };
+
   return (
-    <Container component="main" maxWidth="xs">
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Sign In
-        </Typography>
-        <TextField
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          variant="outlined"
-          margin="normal"
-          id="username"
-          label="Username"
-          name="username"
-          autoComplete="username"
-          autoFocus
-          required
-          fullWidth
-          InputLabelProps={{ required: false }}
-        />
-        <TextField
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          type={showPassword ? "text" : "password"}
-          error={failedToLogin ? true : false}
-          helperText={
-            /* Handle bad login  */
-            failedToLogin ? "Username or password is incorrect" : ""
-          }
-          variant="outlined"
-          margin="normal"
-          name="password"
-          label="Password"
-          id="password"
-          autoComplete="current-password"
-          required
-          fullWidth
-          InputLabelProps={{ required: false }}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  onClick={() => setShowPassword(!showPassword)}
-                  aria-label="toggle password visibility"
-                >
-                  {showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-        />
-        <Button
-          type="submit"
-          //disabled={loading}
-          className={classes.submitButton}
-          fullWidth
-          variant="contained"
-          color="primary"
-        >
-          Sign In
-        </Button>
-        <Typography color="textSecondary">
-          Don't have an account?
-          <Link to="/register" className={classes.registerLink}>
-            Sign Up
-          </Link>
-        </Typography>
-      </div>
-    </Container>
+    <form onSubmit={login}>
+      <Container component="main" maxWidth="xs">
+        <div className={classes.paper}>
+          <Avatar className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign In
+          </Typography>
+          <TextField
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            variant="outlined"
+            margin="normal"
+            id="username"
+            label="Username"
+            name="username"
+            autoComplete="username"
+            autoFocus
+            required
+            fullWidth
+            InputLabelProps={{ required: false }}
+          />
+          <TextField
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            type={showPassword ? "text" : "password"}
+            error={failedToLogin ? true : false}
+            helperText={
+              /* Handle bad login  */
+              failedToLogin ? "Username or password is incorrect" : ""
+            }
+            variant="outlined"
+            margin="normal"
+            name="password"
+            label="Password"
+            id="password"
+            autoComplete="current-password"
+            required
+            fullWidth
+            InputLabelProps={{ required: false }}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    onClick={() => setShowPassword(!showPassword)}
+                    aria-label="toggle password visibility"
+                  >
+                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Button
+            type="submit"
+            //disabled={loading}
+            className={classes.submitButton}
+            fullWidth
+            variant="contained"
+            color="primary"
+          >
+            Sign In
+          </Button>
+          <Typography color="textSecondary">
+            Don't have an account?
+            <Link to="/register" className={classes.registerLink}>
+              Sign Up
+            </Link>
+          </Typography>
+        </div>
+      </Container>
+    </form>
   );
 };
 

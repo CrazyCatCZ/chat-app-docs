@@ -13,7 +13,7 @@ const ChatBody = ({ messageInput }) => {
     const fetch = async () => {
       const {
         data: { messages: allMessages },
-      } = await axios.get("http://127.0.0.1:8000/chat/public-chatroom/19/");
+      } = await axiosInstance.get("/chat/public-chatroom/19/");
       setMessages(allMessages);
     };
     fetch();

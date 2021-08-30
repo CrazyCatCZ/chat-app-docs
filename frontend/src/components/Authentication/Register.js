@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 
+import { axiosInstance } from "../axios";
+
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -58,28 +60,55 @@ const Register = () => {
   const [passwordConfirmMessageError, setPasswordConfirmMessageError] =
     useState("");
 
-  const setErrorMessage = (message, field) => {
-    message = message.replace(".", ""); // Remove dot from message
-
-    if (field === "username") {
-      setUsernameMessageError(message);
-    }
-    if (field === "email") {
-      setEmailMessageError(message);
-    }
-    if (field === "password1") {
-      setPasswordMessageError(message);
-    }
-    if (field === "password2") {
-      setPasswordConfirmMessageError(message);
-    }
-  };
-
   const resetErrorMessages = () => {
     setUsernameMessageError("");
     setEmailMessageError("");
     setPasswordConfirmMessageError("");
     setPasswordConfirmMessageError("");
+  };
+
+  const setErrorMessage = (errorMessages) => {
+    const { username, email, password1, password2 } = errorMessages;
+
+    resetErrorMessages();
+    //message = message.replace(".", ""); // Remove dot from message
+
+    if (username) {
+      const message = username[0].toString();
+      setUsernameMessageError(message);
+    }
+    if (email) {
+      const message = email[0].toString();
+      setEmailMessageError(message);
+    }
+    if (password1) {
+      const message = password1[0].toString();
+      setPasswordMessageError(message);
+    }
+    if (password2) {
+      const message = password2[0].toString();
+      setPasswordConfirmMessageError(message);
+    }
+  };
+
+  const register = (e) => {
+    e.preventDefault();
+
+    axiosInstance
+      .post("users/register/", {
+        username,
+        email,
+        password1: password,
+        password2: passwordConfirm,
+      })
+
+      .catch((err) => {
+        const {
+          response: { data },
+        } = err;
+
+        setErrorMessage(data);
+      });
   };
 
   return (
@@ -91,7 +120,7 @@ const Register = () => {
         <Typography component="h1" variant="h5">
           Sign Up
         </Typography>
-        <form className={classes.form}>
+        <form onSubmit={register} className={classes.form}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField

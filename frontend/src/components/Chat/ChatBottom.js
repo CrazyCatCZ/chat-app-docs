@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSmile, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+
+import { UserContext } from "../Context/UserContext";
 
 const localHost = "127.0.0.1:8000";
 const ws = new WebSocket("ws://" + localHost + "/ws/chat/public_chat/");
 
 const ChatBottom = ({ messageInput, setMessageInput }) => {
+  const { user } = useContext(UserContext);
   const message = {
     action: "subscribe_instance",
-    user: "admin",
+    user: user,
     text: messageInput,
     room_name: "Official Public Chat",
   };

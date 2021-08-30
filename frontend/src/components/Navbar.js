@@ -32,7 +32,6 @@ const useStyles = makeStyles((theme) => ({
 const Navbar = () => {
   const classes = useStyles();
   const { user } = useContext(UserContext);
-  const homeLink = localStorage.getItem("token") ? "/" : "/login";
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -44,7 +43,7 @@ const Navbar = () => {
       <AppBar position="static" style={{ color: "white" }}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <Link className={classes.link} to={homeLink}>
+            <Link className={classes.link} to="/">
               Chat
             </Link>
           </Typography>

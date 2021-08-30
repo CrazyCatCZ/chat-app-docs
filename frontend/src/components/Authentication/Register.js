@@ -68,10 +68,9 @@ const Register = () => {
   };
 
   const setErrorMessage = (errorMessages) => {
-    const { username, email, password1, password2 } = errorMessages;
+    const { username, email, password1, non_field_errors } = errorMessages;
 
     resetErrorMessages();
-    //message = message.replace(".", ""); // Remove dot from message
 
     if (username) {
       const message = username[0].toString();
@@ -85,8 +84,8 @@ const Register = () => {
       const message = password1[0].toString();
       setPasswordMessageError(message);
     }
-    if (password2) {
-      const message = password2[0].toString();
+    if (non_field_errors) {
+      const message = non_field_errors[0].toString();
       setPasswordConfirmMessageError(message);
     }
   };
@@ -108,6 +107,12 @@ const Register = () => {
         } = err;
 
         setErrorMessage(data);
+      })
+      .then((res) => {
+        if (res) {
+          resetErrorMessages();
+          history.push("/login");
+        }
       });
   };
 

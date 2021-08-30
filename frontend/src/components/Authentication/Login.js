@@ -81,9 +81,13 @@ const SignIn = () => {
             data: { token },
           } = res;
 
+          // Set token
           localStorage.setItem("token", token);
           axiosInstance.defaults.headers["Authorization"] = "Token " + token;
+
+          // Redirect
           history.push("/");
+          window.location.reload();
         } else {
           setFailedToLogin(true);
         }

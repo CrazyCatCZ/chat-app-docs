@@ -6,7 +6,7 @@ import { axiosInstance } from "./components/axios";
 
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 
-import { UserContext } from "./components/Contexts/UserContexts";
+import { UserContext } from "./components/Context/UserContext";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
 import Navbar from "./components/Navbar";
@@ -16,7 +16,10 @@ function App() {
   const [user, setUser] = useState(null);
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
+    setLoading(true);
     const fetchUser = async () => {
       await axiosInstance
         .get("users/current-user/")
@@ -29,11 +32,10 @@ function App() {
             setUser(username);
           }
         });
+      setLoading(false);
     };
     fetchUser();
   }, []);
-
-  console.log(user);
 
   const theme = createTheme({
     palette: {
@@ -47,11 +49,16 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <UserContext.Provider value={userValue}>
-          <Navbar />
+          {user && loading === false ? <Navbar /> : null}
           <Switch>
-            <Route path="/login" component={Login} exact />
-            <Route path="/register" component={Register} exact />
-            <Route path="/" component={Chat} exact />
+            {user && loading === false ? (
+              <Route path="/" component={Chat} exact />
+            ) : (
+              <>
+                <Route path="/login" component={Login} exact />
+                <Route path="/register" component={Register} exact />
+              </>
+            )}
           </Switch>
         </UserContext.Provider>
       </ThemeProvider>

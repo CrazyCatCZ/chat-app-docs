@@ -27,7 +27,7 @@ const ChatBottom = ({ messageInput, setMessageInput }) => {
   };
 
   return (
-    <form onClick={sendMessage} onSubmit={sendMessage}>
+    <form onSubmit={sendMessage}>
       <div className="publisher bt-1 border-light">
         <input
           onChange={(e) => setMessageInput(e.target.value)}
@@ -37,6 +37,7 @@ const ChatBottom = ({ messageInput, setMessageInput }) => {
         />{" "}
         <FontAwesomeIcon className="icons" size="lg" icon={faSmile} />
         <FontAwesomeIcon
+          onClick={sendMessage}
           type="submit"
           className="icons"
           size="lg"

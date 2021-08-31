@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useMemo } from "react";
 import "./Bootstrap.css";
 import "./App.css";
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch } from "react-router-dom";
 import { axiosInstance } from "./components/axios";
 
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
 
 import { UserContext } from "./components/Context/UserContext";
+import PrivateRoute from "./components/Routes/PrivateRoute";
+import PublicRoute from "./components/Routes/PublicRoute";
 import Login from "./components/Authentication/Login";
 import Register from "./components/Authentication/Register";
 import Navbar from "./components/Navbar";
@@ -22,16 +24,18 @@ function App() {
     const fetchUser = async () => {
       await axiosInstance
         .get("users/current-user/")
-        //.catch(() => {})
+        .catch(() => {
+          setLoading(false);
+        })
         .then((res) => {
           if (res) {
             const {
               data: { username },
             } = res;
             setUser(username);
+            setLoading(false);
           }
         });
-      setLoading(false);
     };
     fetchUser();
   }, []);
@@ -48,19 +52,24 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <UserContext.Provider value={userValue}>
-          <Switch>
-            {user && loading === false ? (
-              <>
-                <Navbar />
-                <Route path="/" component={Chat} />
-              </>
-            ) : (
-              <>
-                <Route exact path="/register" component={Register} />
-                <Route exact path="/login" component={Login} />
-              </>
-            )}
-          </Switch>
+          {loading === false ? (
+            <>
+              {user ? <Navbar /> : null}
+              <Switch>
+                <PublicRoute
+                  restricted={true}
+                  path="/login"
+                  component={Login}
+                />
+                <PublicRoute
+                  restricted={true}
+                  path="/register"
+                  component={Register}
+                />
+                <PrivateRoute path="/" component={Chat} />
+              </Switch>
+            </>
+          ) : null}
         </UserContext.Provider>
       </ThemeProvider>
     </div>

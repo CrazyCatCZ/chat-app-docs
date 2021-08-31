@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -31,9 +31,11 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = () => {
   const classes = useStyles();
+  const history = useHistory();
   const { user } = useContext(UserContext);
 
   const logout = () => {
+    history.push("/login");
     localStorage.removeItem("token");
     window.location.reload();
   };

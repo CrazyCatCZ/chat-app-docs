@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useState, useRef, useEffect } from "react";
 import Message from "./Message";
 import { axiosInstance } from "../axios";
 
@@ -7,7 +6,17 @@ const localHost = "127.0.0.1:8000";
 const ws = new WebSocket("ws://" + localHost + "/ws/chat/public_chat/");
 
 const ChatBody = ({ messageInput }) => {
+  const messageRef = useRef(null);
   const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    if (messageRef) {
+      messageRef.current.addEventListener("DOMNodeInserted", (event) => {
+        const { currentTarget: target } = event;
+        target.scroll({ top: target.scrollHeight, behavior: "smooth" });
+      });
+    }
+  }, []);
 
   useEffect(() => {
     const fetch = async () => {
@@ -34,7 +43,7 @@ const ChatBody = ({ messageInput }) => {
       }}
     >
       {messages ? (
-        <>
+        <div ref={messageRef} className="messages-container">
           {messages.map(({ id, username, text }, index) => {
             // If previous user is not same as a current user, then show a name above message
             let previousUser = "";
@@ -52,28 +61,7 @@ const ChatBody = ({ messageInput }) => {
               />
             );
           })}
-
-          <div
-            className="ps-scrollbar-x-rail"
-            style={{ left: "0px", bottom: "0px" }}
-          >
-            <div
-              className="ps-scrollbar-x"
-              tabIndex="0"
-              style={{ left: "0px", width: "0px" }}
-            ></div>
-          </div>
-          <div
-            className="ps-scrollbar-y-rail"
-            style={{ top: "0px", height: "0px", right: "2px" }}
-          >
-            <div
-              className="ps-scrollbar-y"
-              tabIndex="0"
-              style={{ top: "0px", height: "2px" }}
-            ></div>
-          </div>
-        </>
+        </div>
       ) : null}
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from "react";
 import "./Bootstrap.css";
 import "./App.css";
-import { Switch, Route } from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import { axiosInstance } from "./components/axios";
 
 import { ThemeProvider, createTheme } from "@material-ui/core/styles";
@@ -15,8 +15,9 @@ import Chat from "./components/Chat/Chat";
 function App() {
   const [user, setUser] = useState(null);
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
-
   const [loading, setLoading] = useState(false);
+
+  const redirectLink = user && loading === false ? "/" : "/login";
 
   useEffect(() => {
     setLoading(true);
@@ -49,14 +50,16 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <UserContext.Provider value={userValue}>
-          {user && loading === false ? <Navbar /> : null}
           <Switch>
             {user && loading === false ? (
-              <Route path="/" component={Chat} exact />
+              <>
+                <Navbar />
+                <Route path="/" component={Chat} />
+              </>
             ) : (
               <>
-                <Route path="/login" component={Login} exact />
-                <Route path="/register" component={Register} exact />
+                <Route exact path="/register" component={Register} />
+                <Route exact path="/login" component={Login} />
               </>
             )}
           </Switch>

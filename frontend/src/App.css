@@ -25,3 +25,9 @@
 .publisher {
   margin-top: 1rem;
 }
+
+.users-name {
+  margin-left: 5px;
+  font-size: 11px;
+  color: grey;
+}

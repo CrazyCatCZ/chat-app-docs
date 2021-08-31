@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { UserContext } from "../Context/UserContext";
 
-const Message = ({ username, text, date }) => {
+const Message = ({ username, text, previousUser }) => {
   const { user } = useContext(UserContext);
 
   return (
@@ -15,6 +15,9 @@ const Message = ({ username, text, date }) => {
       ) : (
         <div className="media media-chat">
           <div className="media-body">
+            {previousUser !== username ? (
+              <span className="users-name">{username}</span>
+            ) : null}
             <p>{text}</p>
           </div>
         </div>

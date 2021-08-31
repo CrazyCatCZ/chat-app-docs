@@ -35,9 +35,21 @@ const ChatBody = ({ messageInput }) => {
     >
       {messages ? (
         <>
-          {messages.map(({ id, username, text, date }) => {
+          {messages.map(({ id, username, text }, index) => {
+            // If previous user is not same as a current user, then show a name above message
+            let previousUser = "";
+            const previousMessage = messages[index - 1];
+            if (previousMessage !== undefined) {
+              previousUser = previousMessage.username;
+            }
+
             return (
-              <Message key={id} username={username} text={text} date={date} />
+              <Message
+                key={id}
+                username={username}
+                text={text}
+                previousUser={previousUser}
+              />
             );
           })}
 

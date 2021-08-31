@@ -17,8 +17,6 @@ function App() {
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
   const [loading, setLoading] = useState(false);
 
-  const redirectLink = user && loading === false ? "/" : "/login";
-
   useEffect(() => {
     setLoading(true);
     const fetchUser = async () => {

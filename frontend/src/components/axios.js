@@ -1,12 +1,13 @@
 import axios from "axios";
+import Cookies from "js-cookie";
 
 const BASE_URL = "http://127.0.0.1:8000";
 let config = {};
 
 // To avoid 401 in login if token is invalid
-if (localStorage.getItem("token")) {
+if (Cookies.get("token")) {
   config = {
-    Authorization: `Token ${localStorage.getItem("token")}`,
+    Authorization: `Token ${Cookies.get("token")}`,
     "Content-Type": "application/json",
     accept: "application/json",
   };

@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -36,7 +37,7 @@ const Navbar = () => {
 
   const logout = () => {
     history.push("/login");
-    localStorage.removeItem("token");
+    Cookies.remove("token");
     window.location.reload();
   };
 

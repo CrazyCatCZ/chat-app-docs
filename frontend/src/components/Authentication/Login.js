@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
+import Cookies from "js-cookie";
 
 import { axiosInstance } from "../axios";
 
@@ -84,7 +85,7 @@ const SignIn = () => {
           } = res;
 
           // Set token
-          localStorage.setItem("token", token);
+          Cookies.set("token", token);
           axiosInstance.defaults.headers["Authorization"] = "Token " + token;
 
           // Redirect

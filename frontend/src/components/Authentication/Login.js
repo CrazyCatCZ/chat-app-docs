@@ -38,7 +38,9 @@ const useStyles = makeStyles((theme) => ({
       background: "#00b2ff",
     },
   },
-
+  formBottom: {
+    width: "100%",
+  },
   registerLink: {
     color: "#1976D2",
     marginLeft: 5,
@@ -159,12 +161,14 @@ const SignIn = () => {
           >
             Sign In
           </Button>
-          <Typography color="textSecondary">
-            Don't have an account?
-            <Link to="/register" className={classes.registerLink}>
-              Sign Up
-            </Link>
-          </Typography>
+          <div className={classes.formBottom}>
+            <Typography color="textSecondary">
+              Don't have an account?
+              <Link to="/register" className={classes.registerLink}>
+                Sign Up
+              </Link>
+            </Typography>
+          </div>
         </div>
       </Container>
     </form>

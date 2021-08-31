@@ -40,7 +40,7 @@ const Navbar = () => {
 
   return (
     <div className={`${classes.root} main-navbar`}>
-      <AppBar position="static" style={{ color: "white" }}>
+      <AppBar position="fixed" style={{ color: "white" }}>
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
             <Link className={classes.link} to="/">

@@ -4,7 +4,7 @@ const ChatHeader = () => {
   return (
     <div className="card-header">
       <h4 className="card-title">
-        <strong>Chat</strong>
+        <strong>Public Chat</strong>
       </h4>{" "}
       Let's Chat App
     </div>

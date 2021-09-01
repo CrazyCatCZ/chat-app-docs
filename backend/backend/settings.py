@@ -148,12 +148,11 @@ JWT_AUTH_COOKIE = 'accessToken'
 JWT_AUTH_REFRESH_COOKIE = 'refreshToken'
 
 REST_FRAMEWORK = {
+    'PAGE_SIZE': 20,
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
         #'dj_rest_auth.jwt_auth.JWTCookieAuthentication',
-
     ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ]
+    
 }

@@ -6,6 +6,12 @@
   font-weight: lighter;
 }
 
+.chat-container {
+  display: flex !important;
+  flex: 1 !important;
+  justify-content: center !important;
+}
+
 .main-container {
   max-width: 200% !important;
 }

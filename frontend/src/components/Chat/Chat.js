@@ -4,14 +4,16 @@ import ChatHeader from "./ChatHeader";
 import ChatBody from "./ChatBody";
 import ChatBottom from "./ChatBottom";
 
+import Grid from "@material-ui/core/Grid";
+
 const Chat = () => {
   const [messageInput, setMessageInput] = useState("");
 
   return (
     <div className="page-content page-container" id="page-content">
       <div className="padding">
-        <div className="main-container row container d-flex justify-content-center">
-          <div className="col-md-6">
+        <Grid container className="chat-container">
+          <Grid item sm={11} md={9} lg={7} xl={6}>
             <div className="card card-bordered">
               <ChatHeader />
               <ChatBody messageInput={messageInput} />
@@ -20,8 +22,8 @@ const Chat = () => {
                 setMessageInput={setMessageInput}
               />
             </div>
-          </div>
-        </div>
+          </Grid>
+        </Grid>
       </div>
     </div>
   );

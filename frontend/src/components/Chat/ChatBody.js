@@ -22,7 +22,7 @@ const ChatBody = ({ messageInput }) => {
     const fetch = async () => {
       const {
         data: { messages: allMessages },
-      } = await axiosInstance.get("/chat/public-chatroom/19/");
+      } = await axiosInstance.get("/chat/get-first-chatroom/");
       setMessages(allMessages);
     };
     fetch();

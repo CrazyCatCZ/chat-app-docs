@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from rest_framework import viewsets
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from rest_framework.pagination import PageNumberPagination
 
 from .models import Message, PublicChatRoom
@@ -29,3 +31,11 @@ class PublicChatRoomViewSet(viewsets.ModelViewSet):
     queryset = PublicChatRoom.objects.all()
     serializer_class = PublicChatRoomSerializer
     pagination_class = PageNumberPagination
+
+
+@api_view(['GET'])
+def get_first_chatroom(request):
+    chat_room = PublicChatRoom.objects.first()
+    serializer = PublicChatRoomSerializer(chat_room)
+
+    return Response(serializer.data)

@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.pagination import PageNumberPagination
+from rest_framework.permissions import  IsAdminUser
 
 from .models import Message, PublicChatRoom
 from .serializers import MessageSerializer, PublicChatRoomSerializer
@@ -25,13 +26,15 @@ class StandardResultsSetPagination(PageNumberPagination):
 class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
+    permisssion_classes = (IsAdminUser,)
 
 
 class PublicChatRoomViewSet(viewsets.ModelViewSet):
     queryset = PublicChatRoom.objects.all()
     serializer_class = PublicChatRoomSerializer
     pagination_class = PageNumberPagination
-
+    permisssion_classes = (IsAdminUser,)
+    
 
 @api_view(['GET'])
 def get_first_chatroom(request):

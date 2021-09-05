@@ -1,8 +1,8 @@
 from django.conf import settings
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from rest_framework.permissions import IsAdminUser
 
-from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from rest_framework.authtoken.models import Token
@@ -33,26 +33,6 @@ class CookieTokenRefreshSerializer(TokenRefreshSerializer):
             return super().validate(attrs)
         else:
             raise InvalidToken('No valid token found in cookie \'refresh_token\'')
-
-
-class CookieTokenObtainPairView(TokenObtainPairView):
-  def finalize_response(self, request, response, *args, **kwargs):
-    if response.data.get('refresh'):
-        one_day = 3600 * 24
-        cookie_max_age = one_day * 14 # 14 days
-        response.set_cookie('refresh_token', response.data['refresh'], max_age=cookie_max_age, httponly=True )
-        del response.data['refresh']
-    return super().finalize_response(request, response, *args, **kwargs)
-
-
-class CookieTokenRefreshView(TokenRefreshView):
-    def finalize_response(self, request, response, *args, **kwargs):
-        if response.data.get('refresh'):
-            cookie_max_age = 3600 * 24 * 14 # 14 days
-            response.set_cookie('refresh_token', response.data['refresh'], max_age=cookie_max_age, httponly=True )
-            del response.data['refresh']
-        return super().finalize_response(request, response, *args, **kwargs)
-    serializer_class = CookieTokenRefreshSerializer
 
 
 class CustomAuthToken(ObtainAuthToken):

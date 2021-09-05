@@ -13,6 +13,8 @@ ALLOWED_HOSTS = [
     'localhost:3000',
 ]
 
+print(DEBUG)
+
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -160,6 +162,9 @@ JWT_AUTH_REFRESH_COOKIE = 'refreshToken'
 REST_FRAMEWORK = {
     'PAGE_SIZE': 20,
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated'
+    ],
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.TokenAuthentication',
         #'dj_rest_auth.jwt_auth.JWTCookieAuthentication',

@@ -5,10 +5,12 @@ import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
 
 import { UserContext } from "../Context/UserContext";
 
-const localHost = "127.0.0.1:8000";
-const ws = new WebSocket("ws://" + localHost + "/ws/chat/public_chat/");
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+const ws_scheme = window.location.protocol === "https:" ? "wss://" : "ws://";
+const ws = new WebSocket(ws_scheme + BASE_URL + "/ws/chat/public_chat/");
 
 const ChatBottom = ({ messageInput, setMessageInput }) => {
+  console.log(ws);
   const { user } = useContext(UserContext);
   const message = {
     action: "subscribe_instance",

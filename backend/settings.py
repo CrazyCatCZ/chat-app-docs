@@ -13,8 +13,6 @@ ALLOWED_HOSTS = [
     'localhost:3000',
 ]
 
-print(DEBUG)
-
 # Application definition
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -89,7 +87,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('127.0.0.1', 6379), 'redis://localhost:6379/4'],
+            "hosts": [('127.0.0.1', 6379), 'redis://localhost:6379'],
         },
     },
 }

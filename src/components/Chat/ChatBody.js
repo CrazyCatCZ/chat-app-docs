@@ -2,8 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import Message from "./Message";
 import { axiosInstance } from "../axios";
 
-const localHost = "127.0.0.1:8000";
-const ws = new WebSocket("ws://" + localHost + "/ws/chat/public_chat/");
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+const ws_scheme = window.location.protocol === "https:" ? "wss://" : "ws://";
+const ws = new WebSocket(ws_scheme + BASE_URL + "/ws/chat/public_chat/");
 
 const ChatBody = ({ messageInput }) => {
   const messageRef = useRef(null);

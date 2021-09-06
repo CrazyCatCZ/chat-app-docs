@@ -1,8 +1,8 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const BASE_URL = "http://127.0.0.1:8000";
 let config = {};
+const FULL_URL = process.env.REACT_APP_FULL_URL;
 
 // To avoid 401 in login if token is invalid
 if (Cookies.get("token")) {
@@ -19,6 +19,6 @@ if (Cookies.get("token")) {
 }
 
 export const axiosInstance = axios.create({
-  baseURL: BASE_URL,
+  baseURL: FULL_URL,
   headers: config,
 });

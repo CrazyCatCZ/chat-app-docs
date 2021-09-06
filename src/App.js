@@ -15,12 +15,13 @@ import Navbar from "./components/Navbar";
 import Chat from "./components/Chat/Chat";
 
 function App() {
+  const [loading, setLoading] = useState(false);
   const [user, setUser] = useState(null);
   const userValue = useMemo(() => ({ user, setUser }), [user, setUser]);
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
+
     const fetchUser = async () => {
       await axiosInstance
         .get("users/current-user/")

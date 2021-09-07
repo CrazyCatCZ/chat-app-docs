@@ -7,11 +7,21 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv()
 
-DEBUG = True
+os.environ['DJANGO_SETTINGS_MODULE'] = 'backend.settings'
+
+DEBUG_VALUE = os.getenv('DEBUG_VALUE')
+if DEBUG_VALUE == 'True':
+    DEBUG = True
+else:
+    DEBUG = False
+
+print(DEBUG)
+
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost:3000',
+    'my-awesome-chat-application.herokuapp.com'
 ]
 
 # Application definition
@@ -54,11 +64,13 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     "corsheaders.middleware.CorsMiddleware", # Corsheaders
+    'whitenoise.middleware.WhiteNoiseMiddleware', # Whitenoise
 ]
 
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1",
     "http://localhost:3000",
+    'https://my-awesome-chat-application.herokuapp.com'
 ]
 
 ROOT_URLCONF = 'backend.urls'
@@ -84,6 +96,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 ASGI_APPLICATION = 'backend.asgi.application'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CHANNEL_LAYERS = {
     'default': {

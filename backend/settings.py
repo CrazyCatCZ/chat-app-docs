@@ -7,8 +7,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 load_dotenv()
 
-os.environ['DJANGO_SETTINGS_MODULE'] = 'backend.settings'
-
 DEBUG_VALUE = os.getenv('DEBUG_VALUE')
 if DEBUG_VALUE == 'True':
     DEBUG = True

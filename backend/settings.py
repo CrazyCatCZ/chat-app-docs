@@ -15,13 +15,12 @@ if DEBUG_VALUE == 'True':
 else:
     DEBUG = False
 
-print(DEBUG)
-
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 ALLOWED_HOSTS = [
     '127.0.0.1',
     'localhost:3000',
-    'my-awesome-chat-application.herokuapp.com'
+    'my-awesome-chat-application.herokuapp.com',
+    '.herokuapp.com'
 ]
 
 # Application definition

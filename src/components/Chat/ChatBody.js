@@ -4,7 +4,7 @@ import { axiosInstance } from "../axios";
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 const ws_scheme = window.location.protocol === "https:" ? "wss://" : "ws://";
-const ws = new WebSocket("ws://" + BASE_URL + "/ws/chat/public_chat/");
+const ws = new WebSocket(ws_scheme + BASE_URL + "/ws/chat/public_chat/");
 
 const ChatBody = ({ messageInput }) => {
   const messageRef = useRef(null);

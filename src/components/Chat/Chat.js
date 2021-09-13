@@ -13,7 +13,7 @@ const Chat = () => {
     <div className="page-content page-container" id="page-content">
       <div className="padding">
         <Grid container className="chat-container">
-          <Grid item sm={11} md={9} lg={7} xl={6}>
+          <Grid item xs={11} sm={10} md={9} lg={7} xl={6}>
             <div className="card card-bordered">
               <ChatHeader />
               <ChatBody messageInput={messageInput} />
